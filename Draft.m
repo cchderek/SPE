@@ -1,7 +1,5 @@
 %% Main script
 
-serieslength = 15;
-
 target_pool
 
 load TorontoWordPool.mat
