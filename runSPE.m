@@ -37,8 +37,8 @@ inst1 = annotation(gcf,'textbox',...
     'HorizontalAlignment', 'center',...
     'VerticalAlignment', 'middle');
 
-% Fixation Point
-fix = text(0.5, 0.5, '+',...
+% 
+fix = text(0.5, 0.5, '',...
     'color', 'r',...
     'fontsize', 100,...
     'Visible', 'off');
@@ -80,7 +80,9 @@ delete([ppn_str ppn_text ppn_button inst1]);
 
 set(fix, 'visible', 'on');
 pause(1)
-close all
+
+%%
+
 
 
  
