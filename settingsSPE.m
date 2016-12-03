@@ -2,14 +2,12 @@
 % Change it to suit your experiment
 
 % Number of words presenting in a single trial
-series_length = 15;
+series_length = 12;
 
 % Number of trials in the experiment
 nTrial = 10;
 
 % Ratio of control experiments in the experiment
-percent_control = 0.5;
+percent_control = 1/3;
 
-% Number of coloured words in the intermediate region
-% colour_word = [1 3 5]
 
