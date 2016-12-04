@@ -1,13 +1,12 @@
 %% settingsSPE stores all modifiable settings for the experiment
 % Change it to suit your experiment
 
-% Number of words presenting in a single trial
+% Number of words presenting in a single trial (any number that is
+% divisible by 3)
 series_length = 12;
 
 % Number of trials in the experiment
-nTrial = 10;
+nTrial = 12;
 
-% Ratio of control experiments in the experiment
-percent_control = 1/3;
-
-
+% Duration of presenting each word
+tWord = 2;
