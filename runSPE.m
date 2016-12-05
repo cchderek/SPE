@@ -71,6 +71,16 @@ ans_button1 = uicontrol('Style','pushbutton',...
     'Position',[.45 .3 .1 .1],...
     'Callback','ppn_ans = strsplit(get(ans_text1,''String'')); uiresume(gcbf)');
 
+% Thanks Screen
+str2 = sprintf('Thank You For Your Participation!');
+thk1 = annotation(fig,'textbox',...
+    'Visible', 'off',...
+    'String',str2,...
+    'FontSize',20,...
+    'Position',[.3 .5 .4 .2],...
+    'HorizontalAlignment','center',...
+    'VerticalAlignment','middle');
+
 % Halt the script until participant enter paricipant number
 uiwait(fig)
 validateattributes(ppn,{'numeric'},{'nonempty','positive', 'integer', 'scalar'},mfilename,'Participant Number',1); 
@@ -114,11 +124,10 @@ data.ppn_ans = upper(ppn_data);
 data.ppn_wordpool = ppn_wordpool;
 data.cLength_pool = cLength_pool';
 
-close all
-
 %% Save the data
 save(int2str(ppn),'data')
-msgbox('Thank you for your participation!')
+set(thk1,'Visible','on')
+
 
 %% Analysis
-AnalysisSPE
+analysisSPE
