@@ -35,9 +35,21 @@ data.ppn_ans(1:nTrial,1:2*series_length) = {'N/A'};
 break_timer = linspace(60, 0, 61);
 break_counter = 0;
 
+%% Test trial
+tPpn_words = {'HIPPOCAMPUS','NEUROIMAGING','COGNITIVE','MATLAB','AMSTERDAM','COGNITO','STICS','BEER','SHOTS'};
+tSeries_length = 9;
+tColour_words = 0;
+
+do_experiment(tPpn_words, tSeries_length, tColour_words, tWord)
+
+set([ans_str1 ans_text1 ans_button1],'Visible','on');
+
+uiwait(fig)
+set([ans_str1 ans_text1 ans_button1],'Visible','off');
+set(ans_text1,'String','')
+
 %% Start experiment
 for iTrial = 1:nTrial
-
     if break_counter == 6
        set(break_text, 'Visible','on');
         for i = 1:60
