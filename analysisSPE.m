@@ -20,6 +20,7 @@ title('Serial Position Effect Result', 'fontsize', 30);
 xlabel('Position', 'fontsize', 20)
 ylabel('Percent Correct', 'fontsize', 20)
 hold on
+grid on
 
 %% Calculate the number of correct answer per trial
 for ippn = 1:length(files)
@@ -54,15 +55,18 @@ sem_m = std(percent_correct.m)/sqrt(data_nTrial);
 %Plot data
 plot(x1,y_c, 'color', 'r');
 plot(x1,y_i, 'color', 'g')
-plot(x1,y_m, 'color', 'b')
+plot(x1,y_m, 'color', 'b') 
+legend('control','colour (region)','colour (middle)','Location','SouthEast')
 
 errorbar(1:size(result.c,2),result.c,sem_c, 'rx')
 errorbar(1:size(result.i,2),result.i,sem_i, 'g+')
 errorbar(1:size(result.m,2),result.m,sem_m, 'bo')
 
-set(gca, 'xlim', [0 13])
-set(gca, 'ylim', [0 inf])
-legend('control','colour (region)','colour (middle)','Location','SouthEast')
+set(gca, 'xtick', 0:1:data_series_length,...
+    'xlim', [0 data_series_length+1])
+set(gca, 'ytick', 0:5:100,...
+    'ylim', [0 inf])
+
 
 
 %{
