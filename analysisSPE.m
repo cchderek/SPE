@@ -1,12 +1,15 @@
 %% analysisSPE is the script for analysing recall performance of a participant
 cd ./data/
 files = dir('*.mat');
+
 for ifile = 1:length(files)
     ppn_data(ifile) = load(files(ifile).name);
 end
 
 data_nTrial = size(ppn_data(1).data.ppn_wordpool,2);
 data_series_length = size(ppn_data(1).data.ppn_wordpool, 1);
+nPPN = length(files);
+
 
 %% Prepare figure
 result_fig = figure('NumberTitle','off',...
@@ -67,6 +70,19 @@ set(gca, 'xtick', 0:1:data_series_length,...
 set(gca, 'ytick', 0:5:100,...
     'ylim', [0 inf])
 
+%%
+
+data_stat(:,1) = reshape(percent_correct.c',data_series_length*nPPN, 1);
+data_stat(data_series_length*nPPN+1:2*data_series_length*nPPN,1) = reshape(percent_correct.i',data_series_length*nPPN, 1);
+data_stat(2*data_series_length*nPPN+1:3*data_series_length*nPPN,1) = reshape(percent_correct.m',data_series_length*nPPN, 1);
+
+data_stat(:,2) = repmat(repelem(1:nPPN,data_series_length),1,3)';
+data_stat(:,3) = repelem(1:3,nPPN*data_series_length)';
+data_stat(:,4) = repmat(1:12, 1,nPPN*3)';
+
+FACTNAMES = {'condition', 'position'};
+
+stats = rm_anova2(data_stat(:,1),data_stat(:,2),data_stat(:,3),data_stat(:,4),FACTNAMES);
 
 
 %{
