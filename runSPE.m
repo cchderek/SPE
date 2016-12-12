@@ -36,11 +36,12 @@ break_timer = linspace(60, 0, 61);
 break_counter = 0;
 
 %% Test trial
+pause(2)
+
 tPpn_words = {'HIPPOCAMPUS','NEUROIMAGING','COGNITIVE','MATLAB','AMSTERDAM','COGNITO','STICS','BEER','SHOTS'};
-tSeries_length = 9;
 tColour_words = 0;
 
-do_experiment(tPpn_words, tSeries_length, tColour_words, tWord)
+do_experiment(tPpn_words, tColour_words, tWord)
 
 set([ans_str1 ans_text1 ans_button1],'Visible','on');
 
@@ -71,7 +72,7 @@ for iTrial = 1:nTrial
     ppn_words = ppn_wordpool(iTrial,:);
     colour_words = cLength_pool(iTrial);
  
-    do_experiment(ppn_words,series_length,colour_words,tWord)
+    do_experiment(ppn_words,colour_words,tWord)
 
     %% Prompt participant for recalling the words
     set([ans_str1 ans_text1 ans_button1],'Visible','on');
@@ -96,5 +97,5 @@ cd ./data
 save(int2str(ppn),'data')
 set(thk1,'Visible','on')
 
-%% Analyse data 
+%% Analyse data (after collecting all the data required)
 % call analysisSPE to analyse and plot all the datasets

@@ -1,4 +1,4 @@
-%% analysisSPE is the script for analysing recall performance of a participant
+%% analysisSPE is the script for analysing recall performance
 cd ./data/
 files = dir('*.mat');
 
@@ -9,7 +9,6 @@ end
 data_nTrial = size(ppn_data(1).data.ppn_wordpool,2);
 data_series_length = size(ppn_data(1).data.ppn_wordpool, 1);
 nPPN = length(files);
-
 
 %% Prepare figure
 result_fig = figure('NumberTitle','off',...
@@ -27,10 +26,10 @@ grid on
 
 %% Calculate the number of correct answer per trial
 for ippn = 1:length(files)
-    for iRow = 1:data_series_length
+    for iRow = 1:data_nTrial
     cData(iRow,:) = double(ismember(ppn_data(ippn).data.ppn_wordpool(iRow,:), ppn_data(ippn).data.ppn_ans(iRow,:)));
     end
-%% Calculate the total number of correct answer per location per condition
+%% Calculate the total number of correct answer per serial position per condition
 percent_correct.c(ippn,:) = sum(cData(([ppn_data(ippn).data.cLength_pool] == 0),:),1)/data_nTrial*100;
 percent_correct.i(ippn,:) = sum(cData(([ppn_data(ippn).data.cLength_pool] > 1),:),1)/data_nTrial*100;
 percent_correct.m(ippn,:) = sum(cData(([ppn_data(ippn).data.cLength_pool] == 1),:),1)/data_nTrial*100;
@@ -70,7 +69,7 @@ set(gca, 'xtick', 0:1:data_series_length,...
 set(gca, 'ytick', 0:5:100,...
     'ylim', [0 inf])
 
-%%
+%% Perform repeated measure two-way ANOVA
 
 data_stat(:,1) = reshape(percent_correct.c',data_series_length*nPPN, 1);
 data_stat(data_series_length*nPPN+1:2*data_series_length*nPPN,1) = reshape(percent_correct.i',data_series_length*nPPN, 1);
@@ -84,14 +83,3 @@ FACTNAMES = {'condition', 'position'};
 
 stats = rm_anova2(data_stat(:,1),data_stat(:,2),data_stat(:,3),data_stat(:,4),FACTNAMES);
 
-
-%{
- % Ugly lines
-line(1:size(result.c,2),result.c,'color','r')
-
-line(1:size(result.i,2),result.i,'color','g')
-
-line(1:size(result.m,2),result.m,'color','b')
-
-legend('control','colour (region)','colour (middle)')
-%}
