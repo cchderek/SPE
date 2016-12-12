@@ -30,9 +30,9 @@ for ippn = 1:length(files)
     cData(iRow,:) = double(ismember(ppn_data(ippn).data.ppn_wordpool(iRow,:), ppn_data(ippn).data.ppn_ans(iRow,:)));
     end
 %% Calculate the total number of correct answer per serial position per condition
-percent_correct.c(ippn,:) = sum(cData(([ppn_data(ippn).data.cLength_pool] == 0),:),1)/data_nTrial*100;
-percent_correct.i(ippn,:) = sum(cData(([ppn_data(ippn).data.cLength_pool] > 1),:),1)/data_nTrial*100;
-percent_correct.m(ippn,:) = sum(cData(([ppn_data(ippn).data.cLength_pool] == 1),:),1)/data_nTrial*100;
+percent_correct.c(ippn,:) = mean(cData(([ppn_data(ippn).data.cLength_pool] == 0),:),1)*100;
+percent_correct.i(ippn,:) = mean(cData(([ppn_data(ippn).data.cLength_pool] > 1),:),1)*100;
+percent_correct.m(ippn,:) = mean(cData(([ppn_data(ippn).data.cLength_pool] == 1),:),1)*100;
 
 end
 
@@ -54,7 +54,7 @@ sem_c = std(percent_correct.c)/sqrt(data_nTrial);
 sem_i = std(percent_correct.i)/sqrt(data_nTrial);
 sem_m = std(percent_correct.m)/sqrt(data_nTrial);
 
-%Plot data
+% Plot data
 plot(x1,y_c, 'color', 'r');
 plot(x1,y_i, 'color', 'g')
 plot(x1,y_m, 'color', 'b') 
