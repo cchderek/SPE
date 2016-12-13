@@ -23,9 +23,9 @@ hold on
 grid on
 
 %% Calculate the total number of correct answer per location per condition
-percent_correct.c = sum(cData(([data.cLength_pool] == 0),:),1)/data_nTrial*100;
-percent_correct.i = sum(cData(([data.cLength_pool] > 1),:),1)/data_nTrial*100;
-percent_correct.m = sum(cData(([data.cLength_pool] == 1),:),1)/data_nTrial*100;
+percent_correct.c = mean(cData(([data.cLength_pool] == 0),:),1)*100;
+percent_correct.i = mean(cData(([data.cLength_pool] > 1),:),1)*100;
+percent_correct.m = mean(cData(([data.cLength_pool] == 1),:),1)*100;
 
 %% Plot the result
 % Produce smooth lines

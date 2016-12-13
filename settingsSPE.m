@@ -2,14 +2,13 @@
 % Change it to suit your experiment
 
 % Number of words presenting in a single trial 
-    % Any number >= 3; but it is suggested to
-    % put a multiple of 3 to get equal number of words per region.
-    
+    % Any number >= 3; it is suggested to
+    % put a multiple of 3 to get an equal number of words per region.
 series_length = 12;
 
 % Number of trials in the experiment
-    % Any number >= 3; but it is suggested to 
-    % put a multiple of 3 to get equal number of trials per condition
+    % Any number >= 3; it is suggested to 
+    % put a multiple of 3 to get an equal number of trials per condition
 nTrial = 12;
 
 % Duration of presenting each word (seconds)
