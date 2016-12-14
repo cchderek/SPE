@@ -56,9 +56,9 @@ y_i = spline(1:data_series_length,result.i,x1);
 y_m = spline(1:data_series_length,result.m,x1);
 
 % Calculate the standard error of the mean
-sem_c = std(percent_correct.c)/sqrt(data_nTrial);
-sem_i = std(percent_correct.i)/sqrt(data_nTrial);
-sem_m = std(percent_correct.m)/sqrt(data_nTrial);
+sem_c = std(percent_correct.c)/sqrt(nPPN);
+sem_i = std(percent_correct.i)/sqrt(nPPN);
+sem_m = std(percent_correct.m)/sqrt(nPPN);
 
 % Plot data
 plot(x1,y_c, 'color', 'r');
