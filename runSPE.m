@@ -36,7 +36,7 @@ break_timer = linspace(60, 0, 61);
 break_counter = 0;
 
 %% Test trial
-pause(2)
+pause(tTrial)
 
 tPpn_words = {'HIPPOCAMPUS','NEUROIMAGING','COGNITIVE','MATLAB','AMSTERDAM','COGNITO','STICS','BEER','SHOTS'};
 tColour_words = 0;
