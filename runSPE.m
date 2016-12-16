@@ -3,7 +3,7 @@
 % by Derek Chan and Hugo McGurran
 % developed on MATLAB version 2016a/b
 %% Please do not modify the following scripts %%   
-
+    % ./data must be in the directory
 %% Set up experiment
 % Load the modifiable settings
 settingsSPE

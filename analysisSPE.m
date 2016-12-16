@@ -1,5 +1,9 @@
 %% analysisSPE is the script for analysing recall performance
-cd ./data/
+% Format of call analysisSPE
+% ./data must be in the directory and contains at least two datasets
+%% Please do not modify the following code
+
+cd ./data
 files = dir('*.mat');
 
 for ifile = 1:length(files)
@@ -23,13 +27,13 @@ xlabel('Serial Position', 'fontsize', 20)
 ylabel('Percent Correct', 'fontsize', 20)
 
 set(gca, 'xtick', 0:1:data_series_length,...
-    'xlim', [0 data_series_length+1])
-set(gca, 'ytick', 0:5:100,...
-    'ylim', [0 inf])
+    'xlim', [0 data_series_length+1],...
+    'ytick', 0:5:100,...
+    'ylim', [0 inf]);
 
 hold on
 grid on
-
+% 
 %% Calculate the number of correct answer per trial
 for ippn = 1:length(files)
     for iRow = 1:data_nTrial
@@ -37,9 +41,9 @@ for ippn = 1:length(files)
     end
     
     %% Calculate the total number of correct answer per serial position per condition
-    percent_correct.c(ippn,:) = mean(cData(([ppn_data(ippn).data.cLength_pool] == 0),:),1)*100;
-    percent_correct.i(ippn,:) = mean(cData(([ppn_data(ippn).data.cLength_pool] > 1),:),1)*100;
-    percent_correct.m(ippn,:) = mean(cData(([ppn_data(ippn).data.cLength_pool] == 1),:),1)*100;
+    percent_correct.c(ippn,:) = mean(cData(([ppn_data(ippn).data.cLength_pool] == 0),:))*100;
+    percent_correct.i(ippn,:) = mean(cData(([ppn_data(ippn).data.cLength_pool] > 1),:))*100;
+    percent_correct.m(ippn,:) = mean(cData(([ppn_data(ippn).data.cLength_pool] == 1),:))*100;
 end
 
 %% Calculate the mean values per position per condition
@@ -77,8 +81,8 @@ data_stat(2*data_series_length*nPPN+1:3*data_series_length*nPPN,1) = reshape(per
 
 data_stat(:,2) = repmat(repelem(1:nPPN,data_series_length),1,3)';
 data_stat(:,3) = repelem(1:3,nPPN*data_series_length)';
-data_stat(:,4) = repmat(1:12, 1,nPPN*3)';
+data_stat(:,4) = repmat(1:data_series_length, 1,nPPN*3)';
 
 FACTNAMES = {'condition', 'position'};
 
-stats = rm_anova2(data_stat(:,1),data_stat(:,2),data_stat(:,3),data_stat(:,4),FACTNAMES);
+stats = rm_anova2(data_stat(:,1),data_stat(:,2),data_stat(:,3),data_stat(:,4),FACTNAMES)
